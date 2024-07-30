@@ -5,14 +5,6 @@ inputs:
   target:
     description: Target object name format=[<image:tag>, <dir path>, <git url>]
     required: true
-  type:
-    description: Target source type scheme=[docker,docker-archive, oci-archive, dir, registry, git, generic]
-    deprecationMessage: Please use target fields, formated [type]:[target]:[tag]
-    required: false
-  scribe-audience:
-    description: Scribe auth audience
-    deprecationMessage: Please use scribe-auth-audience instead
-    required: false
   current:
     description: Discard evidence attached to the current context
   interactive:
@@ -75,8 +67,7 @@ runs:
   image: docker://scribesecuriy.jfrog.io/scribe-docker-public-local/valint:dev-latest
   args:
     - discard
-    - ${{ inputs.type }}${{ inputs.type && ':' }}${{ inputs.target }}
-    - ${{ inputs.scribe-audience && '--scribe.auth.audience=' }}${{ inputs.scribe-audience }}
+    - ${{ inputs.target}}
     - ${{ inputs.current && '--current=' }}${{ inputs.current }}
     - ${{ inputs.interactive && '--interactive=' }}${{ inputs.interactive }}
     - ${{ inputs.ref && '--ref=' }}${{ inputs.ref }}
