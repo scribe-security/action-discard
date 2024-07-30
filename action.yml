@@ -67,7 +67,7 @@ runs:
   image: docker://scribesecuriy.jfrog.io/scribe-docker-public-local/valint:dev-latest
   args:
     - discard
-    - ${{ inputs.target}}
+    - ${{ inputs.target }}
     - ${{ inputs.current && '--current=' }}${{ inputs.current }}
     - ${{ inputs.interactive && '--interactive=' }}${{ inputs.interactive }}
     - ${{ inputs.ref && '--ref=' }}${{ inputs.ref }}
